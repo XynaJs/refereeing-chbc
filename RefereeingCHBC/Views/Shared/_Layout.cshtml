@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html >
+<html xml:lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RefereeingCHBC</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/bootstrap.min.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    </environment>
+    @RenderSection("Header", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">RefereeingCHBC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="Home-Index" href="@Url.Action("Index", "Home")">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <secure-content asp-area="" asp-controller="Report" asp-action="Index">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Report-Index" href="@Url.Action("Index", "Report")" role="button" aria-haspopup="true" aria-expanded="false">Rapports</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="Report-Create" href="@Url.Action("Create", "Report")">Créer un Rapport</a>
+                            <a class="dropdown-item" id="Report-List" href="@Url.Action("List", "Report")">Lister Mes Rapports</a>
+                        </div>
+                    </li>
+                </secure-content>
+                <secure-content asp-area="" asp-controller="Access" asp-action="Index">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="Role-Index" href="@Url.Action("Index", "Role")">Liste des Roles</a>
+                            <a class="dropdown-item" id="Role-Create" href="@Url.Action("Create", "Role")">Créer un Role</a>
+                            <a class="dropdown-item" id="Access-Index" href="@Url.Action("Index", "Access")">Gestion Users/Roles</a>
+                            <a class="dropdown-item" id="Account-Register" href="@Url.Action("Register", "Account")">Ajouter Utilisateur</a>
+                        </div>
+                    </li>
+                </secure-content>
+                <li class="nav-item">
+                    <a class="nav-link" id="Home-About" href="@Url.Action("About", "Home")">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    @Html.Partial("_LoginPartial")
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-1">
+        @Html.Partial("_StatusMessages")
+        @RenderBody()
+        <hr />
+        <footer>
+            <p><a href="https://caruchet.dev" target="_blank">Développé par Thomas Caruchet.DEV</a> - RefereeingCHBC - @DateTime.Now.Year.ToString() Tous Droits Réservés</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/bootstrap.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="~/lib/bootstrap/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @{
+        var controller = ViewContext.RouteData.Values["Controller"];
+        var action = ViewContext.RouteData.Values["Action"];
+    }
+    <script>
+        $("li #@(ViewContext.RouteData.Values["Controller"])-@(ViewContext.RouteData.Values["Action"])").addClass("active");
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,354 @@
+﻿@model RefereeingCHBC.Datas.Report
+
+@{
+    ViewData["Title"] = "Create";
+    List<RefereeingCHBC.Datas.Championship> championships = (List<RefereeingCHBC.Datas.Championship>)ViewData["championships"];
+    List<RefereeingCHBC.Datas.Club> clubs = (List<RefereeingCHBC.Datas.Club>)ViewData["clubs"];
+    List<RefereeingCHBC.Datas.Referee> referees = (List<RefereeingCHBC.Datas.Referee>)ViewData["referees"];
+    List<RefereeingCHBC.Datas.Supervisor> supervisors = (List<RefereeingCHBC.Datas.Supervisor>)ViewData["supervisors"];
+}
+
+<h1>Create</h1>
+
+<h4>Report</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div id="HeadReport">
+                <div class="form-group">
+                    <label asp-for="DateBegin" class="control-label"></label>
+                    <input asp-for="DateBegin" class="form-control" />
+                    <span asp-validation-for="DateBegin" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Championship.Id" class="control-label"></label>
+                    <select class="form-control" asp-for="Championship.Id" asp-items="@(new SelectList(championships,"Id","Name"))">
+                        <option>Merci de Sélectionner un Championnat</option>
+                    </select>
+                    <span asp-validation-for="Championship.Id" class="text-danger"></span>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="ClubHome.Id" class="control-label"></label>
+                            <select class="form-control" asp-for="ClubHome.Id" asp-items="@(new SelectList(clubs,"Id","Name"))">
+                                <option>Merci de Sélectionner un Club Recevant</option>
+                            </select>
+                            <span asp-validation-for="ClubHome.Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="ClubVisitor.Id" class="control-label"></label>
+                            <select class="form-control" asp-for="ClubVisitor.Id" asp-items="@(new SelectList(clubs,"Id","Name"))">
+                                <option>Merci de Sélectionner un Club Visiteur</option>
+                            </select>
+                            <span asp-validation-for="ClubVisitor.Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="NbGoalsClubHome" class="control-label"></label>
+                            <input asp-for="NbGoalsClubHome" class="form-control" />
+                            <span asp-validation-for="NbGoalsClubHome" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="NbGoalsClubVisitor" class="control-label"></label>
+                            <input asp-for="NbGoalsClubVisitor" class="form-control" />
+                            <span asp-validation-for="NbGoalsClubVisitor" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Referee1.Id" class="control-label"></label>
+                            <select class="form-control" asp-for="Referee1.Id" asp-items="@(new SelectList(referees,"Id","NameLast"))">
+                                <option>Merci de Sélectionner un Arbitre1</option>
+                            </select>
+                            <span asp-validation-for="Referee1.Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Referee2.Id" class="control-label"></label>
+                            <select class="form-control" asp-for="Referee2.Id" asp-items="@(new SelectList(referees,"Id","NameLast"))">
+                                <option value="0">Merci de Sélectionner un Arbitre2 (facultatif)</option>
+                            </select>
+                            <span asp-validation-for="Referee2.Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Supervisor.Id" class="control-label"></label>
+                    <select class="form-control" asp-for="Supervisor.Id" asp-items="@(new SelectList(supervisors,"Id","NameLast"))">
+                        <option value="0">Merci de Sélectionner un Superviseur(Accompagnateur)</option>
+                    </select>
+                    <span asp-validation-for="Supervisor.Id" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="A">
+                <div class="form-row" id="A1">
+                    <div class="form-group col-md-2">
+                        <label asp-for="A1Rate" class="control-label"></label>
+                        <input asp-for="A1Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="A1Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="A1Comment" class="control-label"></label>
+                        <input asp-for="A1Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="A1Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="A2">
+                    <div class="form-group col-md-2">
+                        <label asp-for="A2Rate" class="control-label"></label>
+                        <input asp-for="A2Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="A2Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="A2Comment" class="control-label"></label>
+                        <input asp-for="A2Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="A2Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="A3">
+                    <div class="form-group col-md-2">
+                        <label asp-for="A3Rate" class="control-label"></label>
+                        <input asp-for="A3Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="A3Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="A3Comment" class="control-label"></label>
+                        <input asp-for="A3Comment" class="form-control rating" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="A3Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="A4">
+                    <div class="form-group col-md-2">
+                        <label asp-for="A4Rate" class="control-label"></label>
+                        <input asp-for="A4Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="A4Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="A4Comment" class="control-label"></label>
+                        <input asp-for="A4Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="A4Comment" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="B">
+                <div class="form-row" id="B1">
+                    <div class="form-group col-md-2">
+                        <label asp-for="B1Rate" class="control-label"></label>
+                        <input asp-for="B1Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="B1Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="B1Comment" class="control-label"></label>
+                        <input asp-for="B1Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="B1Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="B2">
+                    <div class="form-group col-md-2">
+                        <label asp-for="B2Rate" class="control-label"></label>
+                        <input asp-for="B2Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="B2Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="B2Comment" class="control-label"></label>
+                        <input asp-for="B2Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="B2Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="B3">
+                    <div class="form-group col-md-2">
+                        <label asp-for="B3Rate" class="control-label"></label>
+                        <input asp-for="B3Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="B3Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="B3Comment" class="control-label"></label>
+                        <input asp-for="B3Comment" class="form-control rating" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="B3Comment" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="C">
+                <div class="form-row" id="C1">
+                    <div class="form-group col-md-2">
+                        <label asp-for="C1Rate" class="control-label"></label>
+                        <input asp-for="C1Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="C1Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="C1Comment" class="control-label"></label>
+                        <input asp-for="C1Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="C1Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="C2">
+                    <div class="form-group col-md-2">
+                        <label asp-for="C2Rate" class="control-label"></label>
+                        <input asp-for="C2Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="C2Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="C2Comment" class="control-label"></label>
+                        <input asp-for="C2Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="C2Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="C3">
+                    <div class="form-group col-md-2">
+                        <label asp-for="C3Rate" class="control-label"></label>
+                        <input asp-for="C3Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="C3Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="C3Comment" class="control-label"></label>
+                        <input asp-for="C3Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="C3Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="C4">
+                    <div class="form-group col-md-2">
+                        <label asp-for="C4Rate" class="control-label"></label>
+                        <input asp-for="C4Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="C4Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="C4Comment" class="control-label"></label>
+                        <input asp-for="C4Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="C4Comment" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row" id="C5">
+                    <div class="form-group col-md-2">
+                        <label asp-for="C5Rate" class="control-label"></label>
+                        <input asp-for="C5Rate" class="form-control rating" type="number" min="1" max="4"/>
+                        <span asp-validation-for="C5Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-10">
+                        <label asp-for="C5Comment" class="control-label"></label>
+                        <input asp-for="C5Comment" class="form-control" maxlength="250" autocomplete="off"/>
+                        <span asp-validation-for="C5Comment" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="FooterReport">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="TotalRateA" class="control-label"></label>
+                        <input asp-for="TotalRateA" id="TotalRateA" class="form-control" readonly/>
+                        <span asp-validation-for="TotalRateA" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="TotalRateB" class="control-label"></label>
+                        <input asp-for="TotalRateB" id="TotalRateB" class="form-control" readonly/>
+                        <span asp-validation-for="TotalRateB" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="TotalRateC" class="control-label"></label>
+                        <input asp-for="TotalRateC" id="TotalRateC" class="form-control" readonly/>
+                        <span asp-validation-for="TotalRateC" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TotalRate" class="control-label"></label>
+                    <input asp-for="TotalRate" id="TotalRate" class="form-control" readonly />
+                    <span asp-validation-for="TotalRate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Comment" class="control-label"></label>
+                    <input asp-for="Comment" class="form-control" maxlength="500" autocomplete="off"/>
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-secondary" href="@Url.Action("List","Index")">Retourner à la Liste</a>
+</div>
+
+@section Scripts{ 
+    <script>
+        jQuery(function ($) {
+            var allA = $('#A :input[type="number"]');
+            allA.each(function () {
+                $(this).on('keyup mouseup', function () {
+                     $('#TotalRateA').val(CalcTotalRateA());
+                    $('#TotalRate').val(CalcTotalRate());
+                });
+            });
+            var allB = $('#B :input[type="number"]');
+            allB.each(function () {
+                $(this).on('keyup mouseup', function () {
+                     $('#TotalRateB').val(CalcTotalRateB());
+                    $('#TotalRate').val(CalcTotalRate());
+                });
+            });
+            var allC = $('#C :input[type="number"]');
+            allC.each(function () {
+                $(this).on('keyup mouseup', function () {
+                     $('#TotalRateC').val(CalcTotalRateC());
+                    $('#TotalRate').val(CalcTotalRate());
+                });
+            });
+
+            @if(Model != null)
+            {
+                <text>
+                    var allNumber = $(':input[type="number"]');
+                    allNumber.each(function () {
+                        $(this).val(0)
+                    });
+                </text>
+            }
+            
+        });
+
+        function CalcTotalRateA() {
+            var TRA = 0;
+            var allARate = $('#A :input[type="number"]');
+            allARate.each(function(){
+                var value = $(this).val();
+                if (!isNaN(value) && value > 0) TRA += parseInt(value);
+            })
+            return TRA;
+        }
+        function CalcTotalRateB() {
+            var TRB = 0;
+            var allBRate = $('#B :input[type="number"]');
+            allBRate.each(function(){
+                var value = $(this).val();
+                if (!isNaN(value) && value > 0) TRB += parseInt(value);
+            })
+            return TRB;
+        }
+        function CalcTotalRateC() {
+            var TRC = 0;
+            var allCRate = $('#C :input[type="number"]');
+            allCRate.each(function(){
+                var value = $(this).val();
+                if (!isNaN(value) && value > 0) TRC += parseInt(value);
+            })
+            return TRC;
+        }
+        function CalcTotalRate() {
+            return CalcTotalRateA()+CalcTotalRateB()+CalcTotalRateC();
+        }
+    </script>
+}

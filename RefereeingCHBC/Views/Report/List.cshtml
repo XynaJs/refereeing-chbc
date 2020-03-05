@@ -1,0 +1,67 @@
+﻿@model IEnumerable<RefereeingCHBC.Datas.Report>
+
+@{
+    ViewData["Title"] = "Liste de Mes Suivis";
+}
+
+<h1>Liste de Mes Suivis</h1>
+
+<p>
+    <a class="btn btn-primary" href="@Url.Action("Create","Report")">Créer un Nouveau Rapport</a>
+</p>
+<table class="table table-striped table-responsive-sm">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateBegin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubHome.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NbGoalsClubHome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClubVisitor.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NbGoalsClubVisitor)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateBegin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClubHome.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NbGoalsClubHome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClubVisitor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NbGoalsClubVisitor)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Enregistrer", "Save", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Imprimer", "Print", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
