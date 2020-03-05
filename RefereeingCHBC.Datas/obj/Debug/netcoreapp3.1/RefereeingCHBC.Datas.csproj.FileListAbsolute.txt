@@ -1,0 +1,8 @@
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\bin\Debug\netcoreapp3.1\RefereeingCHBC.Datas.deps.json
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\bin\Debug\netcoreapp3.1\RefereeingCHBC.Datas.dll
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\obj\Debug\netcoreapp3.1\RefereeingCHBC.Datas.csprojAssemblyReference.cache
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\obj\Debug\netcoreapp3.1\RefereeingCHBC.Datas.AssemblyInfoInputs.cache
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\obj\Debug\netcoreapp3.1\RefereeingCHBC.Datas.AssemblyInfo.cs
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\bin\Debug\netcoreapp3.1\RefereeingCHBC.Datas.pdb
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\obj\Debug\netcoreapp3.1\RefereeingCHBC.Datas.dll
+C:\Developments\Perso\ProjectsWD\RefereeingCHBC.Datas\obj\Debug\netcoreapp3.1\RefereeingCHBC.Datas.pdb
